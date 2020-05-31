@@ -49,13 +49,14 @@ namespace Vending
         {
             IEnumerable<Product> priceConditons = _products.Where(p => minPrice <= p.Price && maxPrice >= p.Price);
             IEnumerable<Product> orderByPrice = priceConditons.OrderBy(p => p.Price);
-            return priceConditons.ToList();
+            return orderByPrice.ToList();
         }
 
         // Return a product with a given ID. Return null if not found.
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            Product getId = _products.Find(p => id == p.Id);
+            return getId;
         }
 
         // Return the cheapest product or null if there are no products
