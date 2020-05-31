@@ -47,7 +47,9 @@ namespace Vending
         // Find a product between a range or prices. Results should be ordered by price
         public List<Product> SearchByPrice(double minPrice, double maxPrice)
         {
-            throw new NotImplementedException();
+            IEnumerable<Product> priceConditons = _products.Where(p => minPrice <= p.Price && maxPrice >= p.Price);
+            IEnumerable<Product> orderByPrice = priceConditons.OrderBy(p => p.Price);
+            return priceConditons.ToList();
         }
 
         // Return a product with a given ID. Return null if not found.
